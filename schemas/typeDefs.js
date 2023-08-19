@@ -12,7 +12,6 @@ const typeDefs = gql`
     type Article {
         _id: ID
         username: String
-        title: String
         prompt: String
         response: String
         date: String
@@ -24,16 +23,16 @@ const typeDefs = gql`
     }
 
     type Query {
-    getUser(username: String!): User
+    getUser(id: ID!): User
     getAllUsers: [User]
     getSavedArticles(username: String!): [Article]
-    getArticle(_id: ID!): Article
+    getArticleById(_id: ID!): Article
     }
 
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
-        saveArticle(username: String!, title: String!, prompt: String!, response: String!, date: String!): Article
+        saveArticle(username: String!, prompt: String!, response: String!, date: String!): Article
         removeArticle(username: String!, _id: ID!): User
     }
 `;

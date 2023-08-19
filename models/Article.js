@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const articleSchema = new Schema({
-    title: {
+    username: {
         type: String,
         required: true,
+        trim: true,
     },
     prompt: {
         type: String,
@@ -17,7 +18,7 @@ const articleSchema = new Schema({
     },
     date: {
         type: Date,
-        required: true,
+        default: Date.now,
     },
 
 });

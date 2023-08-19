@@ -8,12 +8,13 @@ const resolvers = {
             return User.find();
         },
         getUser: async (parent, args) => {
-            return await User.findOne(args.username );
+            return await User.findById(args.id);
         },
-        getSavedArticles: async (parent, args) => {
-            return await Article.find(args.username );
+        getSavedArticles: async (_, { username }) => {
+            const articles = await Article.find( {username} );
+            return articles;
         },
-        getArticle: async (parent, args) => {
+        getArticleById: async (parent, args) => {
             return await Article.findById(args.id );
         },
     },
@@ -54,10 +55,10 @@ const resolvers = {
             return { token, user };
         },
 
-        saveArticle : async (parent, { username, title, prompt, response, date }) => {
-            const article = await Article.create({ username, title, prompt, response, date });
+        saveArticle : async (__, { username, prompt, response, date }) => {
+            const article = await Article.create({ username, prompt, response, date });
             const token = signToken(article);
-            return { token, article };
+            return article ;
         },
 
         removeArticle: async (parent, { _id }, context ) => {
