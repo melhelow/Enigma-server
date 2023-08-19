@@ -14,8 +14,8 @@ const resolvers = {
             const articles = await Article.find( {username} );
             return articles;
         },
-        getArticleById: async (parent, args) => {
-            return await Article.findById(args.id );
+        getArticle: async (parent, args) => {
+            return await Article.findById(args.id);
         },
     },
     Mutation: {

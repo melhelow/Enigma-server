@@ -14,7 +14,7 @@ const typeDefs = gql`
         username: String
         prompt: String
         response: String
-        date: String
+        date: Int
     }
 
     type Auth {
@@ -26,7 +26,7 @@ const typeDefs = gql`
     getUser(id: ID!): User
     getAllUsers: [User]
     getSavedArticles(username: String!): [Article]
-    getArticleById(_id: ID!): Article
+    getArticle(id: ID!): Article
     }
 
     type Mutation {
